@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ItemModel from '../../models/ItemModel'
 
+const itemModel = new ItemModel()
 
 export default function ShopItemFunc(props) {
 
@@ -13,11 +14,16 @@ const { item } = props
       <h1>{item.title}</h1>
       <h3>{item.description}</h3>
       <div className="description">{item.descriptionFull}</div>
-      <div class="highlight-window mobile"><div class="highlight-overlay"></div></div>
+      <div className="highlight-window mobile"><div className="highlight-overlay"></div></div>
+      <div className="divider"></div>
+      <div className="purchase-info">
+    <div className="price">{item.currency}{item.price.toFixed(2)}</div>
+    <button>Добавить в корзину</button>
+  </div>
     </div>
   )
 }
 
 ShopItemFunc.propTypes = {
-  item: PropTypes.instanceOf(ItemModel).isRequired
+  item: PropTypes.shape(itemModel).isRequired
 }
